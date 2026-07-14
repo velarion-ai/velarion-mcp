@@ -91,6 +91,10 @@ Once connected, ask your agent things like:
 
 ---
 
+## Connecting
+
+Full connection flow for any MCP client (Claude Desktop, Claude Code, a custom agent, or an agent procured via a marketplace): [`docs/connecting.md`](docs/connecting.md).
+
 ## Sample outputs
 
 These are real responses from the live server, lightly trimmed.
