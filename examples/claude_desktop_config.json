@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "velarion": {
+      "type": "streamable-http",
+      "url": "https://velarion-scraper-production.up.railway.app/mcp",
+      "headers": {
+        "X-Velarion-Agent-Token": "vlragt_replace_with_your_self_issued_token"
+      }
+    }
+  }
+}
