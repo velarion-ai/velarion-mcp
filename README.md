@@ -32,8 +32,9 @@ A company outside the covered universe returns `not_in_coverage` rather than a g
 | `price_product` | Quote a custom artifact (peer-cohort audit, extended governance pull, say-on-pay window). | Free |
 | `place_order` | Open a paid order against a quote. | Metered |
 | `fulfill_paid_order` | Retrieve the artifact once settlement clears. | Metered |
+| `list_skus` | Enumerate the sellable catalog — fixed SKUs and custom artifact families — with pricing shape and latency. | Free |
 
-Paid artifacts are withheld until payment clears, and every artifact is checked against the underlying data before it ships — the server will refuse to deliver a narrative it can't ground.
+Paid artifacts are withheld until payment clears, and every artifact is checked against the underlying data before it ships — the server will refuse to deliver a narrative it can't ground. See [`docs/custom-requests.md`](docs/custom-requests.md) for the paid-artifact flow.
 
 ---
 

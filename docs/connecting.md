@@ -46,6 +46,41 @@ per day work immediately; paid products require a funded balance.
 
 The same config as a file is committed at [`examples/claude_desktop_config.json`](../examples/claude_desktop_config.json).
 
+### Cursor
+
+Add to `~/.cursor/mcp.json` (or a project `.cursor/mcp.json`). Cursor infers a remote server from the `url`:
+
+```json
+{
+  "mcpServers": {
+    "velarion": {
+      "url": "https://velarion-scraper-production.up.railway.app/mcp",
+      "headers": { "X-Velarion-Agent-Token": "vlragt_your_token_here" }
+    }
+  }
+}
+```
+
+Committed at [`examples/cursor_mcp_config.json`](../examples/cursor_mcp_config.json).
+
+### VS Code
+
+VS Code's native MCP support uses a `servers` block (`.vscode/mcp.json` or user settings):
+
+```json
+{
+  "servers": {
+    "velarion": {
+      "type": "http",
+      "url": "https://velarion-scraper-production.up.railway.app/mcp",
+      "headers": { "X-Velarion-Agent-Token": "vlragt_your_token_here" }
+    }
+  }
+}
+```
+
+Committed at [`examples/vscode_mcp_config.json`](../examples/vscode_mcp_config.json).
+
 ### A custom agent (raw MCP over HTTP)
 
 Standard MCP handshake — `initialize`, capture the `mcp-session-id` response header, then
@@ -84,6 +119,7 @@ curl -s -X POST $BASE/mcp \
 | `price_product` | Quote a custom artifact | Free |
 | `place_order` | Open a paid order against a quote | Metered |
 | `fulfill_paid_order` | Retrieve the artifact once settlement clears | Metered |
+| `list_skus` | Enumerate the sellable catalog (SKUs + custom families) | Free |
 
 Paid artifacts are withheld until payment clears, and every artifact is grounded against the
 underlying data before delivery — the server refuses to ship a narrative it cannot support.
