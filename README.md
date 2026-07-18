@@ -4,7 +4,7 @@
 
 An agent connects, self-issues a token in one HTTP call (no human in the loop), and immediately queries structured comp and governance data. Read tools and three free Governance Alpha Cards per day work on the free tier; deeper artifacts settle through a metered pay rail.
 
-- **Endpoint:** `https://velarion-scraper-production.up.railway.app/mcp` (streamable-HTTP)
+- **Endpoint:** `https://api.velarion.ai/mcp` (streamable-HTTP)
 - **Registry:** `ai.velarion/company-intelligence` on the [official MCP Registry](https://registry.modelcontextprotocol.io)
 - **Website:** https://intel.velarion.ai
 
@@ -12,7 +12,7 @@ An agent connects, self-issues a token in one HTTP call (no human in the loop), 
 
 ## What it covers
 
-A **2,660-company universe** — ~1,200 active tickers across 12 industries plus their disclosed peer companies. Of these, **2,412 companies have extracted executive compensation**, drawn from **37,500+ executive-comp records**, **49,800+ director-comp records**, and **18,800+ say-on-pay results**. Data is sourced from annual proxy filings and refreshed nightly; every response is current as of the most recently processed filing.
+A **3,000-company universe** — ~1,200 active tickers across 12 industries plus their disclosed peer companies. Most have extracted executive compensation, director compensation, and say-on-pay history. Data is sourced from annual proxy filings and refreshed nightly; every response is current as of the most recently processed filing.
 
 A company outside the covered universe returns `not_in_coverage` rather than a guess — the server never fabricates a figure for a company it does not track.
 
@@ -43,7 +43,7 @@ Paid artifacts are withheld until payment clears, and every artifact is checked 
 ### 1. Self-issue a token (one call, instant)
 
 ```bash
-curl -X POST https://velarion-scraper-production.up.railway.app/agent/v1/token/self-serve \
+curl -X POST https://api.velarion.ai/agent/v1/token/self-serve \
   -H 'Content-Type: application/json' \
   -d '{"agent_label": "my-agent", "contact_email": "you@example.com"}'
 ```
@@ -55,7 +55,7 @@ Returns your token once — store it:
   "token": "vlragt_...",
   "scopes": ["mcp:read", "mcp:buy"],
   "balance_cents": 0,
-  "mcp_endpoint": "https://velarion-scraper-production.up.railway.app/mcp",
+  "mcp_endpoint": "https://api.velarion.ai/mcp",
   "header": "X-Velarion-Agent-Token",
   "free_tier": {
     "governance_alpha_card": "3 free cards per day",
@@ -73,7 +73,7 @@ Returns your token once — store it:
   "mcpServers": {
     "velarion": {
       "type": "streamable-http",
-      "url": "https://velarion-scraper-production.up.railway.app/mcp",
+      "url": "https://api.velarion.ai/mcp",
       "headers": {
         "X-Velarion-Agent-Token": "vlragt_your_token_here"
       }
@@ -149,7 +149,7 @@ Comp consultants, institutional investors, corporate compensation committees, go
 
 - **Sourced from annual proxy filings**, processed nightly. A response is current as of the most recently processed filing for that company.
 - **Deterministic where it matters.** Say-on-pay and benchmarking signals are computed from disclosed figures, not model guesses. Narrative outputs are grounded against the underlying numbers before delivery.
-- **Coverage is bounded and honest.** Outside the ~2,660-company universe, tools return `not_in_coverage`.
+- **Coverage is bounded and honest.** Outside the ~3,000-company universe, tools return `not_in_coverage`.
 - Not investment advice. Not a substitute for a company's own filings.
 
 ## Support
